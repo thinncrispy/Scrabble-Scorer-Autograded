@@ -67,14 +67,18 @@ let vowelBonusScorer = function vowelBonusScorer(word){
 let scrabbleScorer = function scrabbleScorer(word){
    word = word.toLowerCase();
    let score = 0;
-   let newPointStructure = transform(oldPointStructure);
-
    for (let i = 0; i < word.length; i++){
-      let letter = word[i]
-      if (newPointStructure.hasOwnProperty(letter)) {
-         score += newPointStructure[letter];
-      }
+      score += newPointStructure[word[i]];
    }
+
+   // let newPointStructure = transform(oldPointStructure);
+
+   // for (let i = 0; i < word.length; i++){
+   //    let letter = word[i]
+   //    if (newPointStructure.hasOwnProperty(letter)) {
+   //       score += newPointStructure[letter];
+   //    }
+   
    return score;
 };
 
@@ -103,11 +107,11 @@ function scorerPrompt() {
    console.log(" 0 - Simple: One point per character \n 1 - Vowel Bonus: Vowels are worth 3 points  \n 2 -  Scrabble: Uses Scrabble point system");
    let selection = input.question("Which scoring Algorithm Would you like to use?")
    if (selection == 0) {
-      console.log(scoringAlgorithms[0].scorerFunction(scrabbWord));
+      console.log(`Score for "${scrabbWord}" using ${scoringAlgorithms[0].name} : ${scoringAlgorithms[0].scorerFunction(scrabbWord)}`);
    } else if (selection == 1) {
-      console.log(scoringAlgorithms[1].scorerFunction(scrabbWord));
+      console.log(`Score for "${scrabbWord}" using ${scoringAlgorithms[1].name} : ${scoringAlgorithms[1].scorerFunction(scrabbWord)}`);
    } else if (selection == 2 ) {
-      console.log(scoringAlgorithms[2].scorerFunction(scrabbWord));
+      console.log(`Score for "${scrabbWord}" using ${scoringAlgorithms[2].name} : ${scoringAlgorithms[2].scorerFunction(scrabbWord)}`);
    }
 };
 
@@ -128,7 +132,6 @@ let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    scorerPrompt();
-   
 }
 
 // Don't write any code below this line //
